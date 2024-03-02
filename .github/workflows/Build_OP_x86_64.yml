@@ -48,7 +48,6 @@ jobs:
         cd openwrt
         echo "src-git OpenClash https://github.com/vernesong/OpenClash.git" >> ./feeds.conf.default
         echo "src-git OpenAppFilter https://github.com/destan19/OpenAppFilter.git" >> ./feeds.conf.default
-   #     echo "src-git ssrp https://github.com/fw876/helloworld.git" >> ./feeds.conf.default
         
     - name: Update & Install feeds
       working-directory: ./openwrt
