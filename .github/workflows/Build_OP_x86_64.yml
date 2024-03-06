@@ -80,14 +80,19 @@ jobs:
       working-directory: ./openwrt
       run: |
         make download -j$(nproc)
-        find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
+        #find dl -size -1024c -exec ls -l {} \;
+        #find dl -size -1024c -exec rm -f {} \;
 
     - name: Build firmware
       working-directory: ./openwrt
       run: |
-        echo -e "$(nproc) thread build."
-        make -j$(nproc) V=s
+        echo -e "Try $(nproc) thread build."
+        make -j$(nproc) V=s || make -j1 V=s
+        echo "======================="
+        echo "Space usage:"
+        echo "======================="
+        df -h
+        echo "======================="
 
     - name : Upload artifact
       uses: actions/upload-artifact@master
